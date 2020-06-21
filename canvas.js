@@ -13,7 +13,7 @@ let axeSwing1 = new Audio("./Sounds/axeSwing1.mp3");
 let axeSwing2 = new Audio("./Sounds/axeSwing2.mp3");
 let axeSwing3 = new Audio("./Sounds/axeSwing3.mp3");
 let axeSwing4 = new Audio("./Sounds/axeSwing4.mp3");
-let axeSwing5 = new Audio("./Sounds/axeSwing5.mp3")
+let axeSwing5 = new Audio("./Sounds/axeSwing5.mp3");
 
 let backgroundMusic = new Audio("./Sounds/backgroundMusic.mp3");
 backgroundMusic.currentTime = 0;
@@ -24,7 +24,7 @@ backgroundMusic.loop = true; // The music plays after the user click into the ga
 let mouse = {
   x: undefined,
   y: undefined,
-}
+};
 
 /*** Event Listeners ***/ 
 // Mouse Position Setter
@@ -60,7 +60,7 @@ let playButton = {
   colour: "red",
   x: 60,
   y: 230,
-}
+};
 
 let playButtonText = {
   text: "Play",
@@ -68,7 +68,7 @@ let playButtonText = {
   font: "40px Arial",
   x: playButton.x + 35,
   y: playButton.y + 40
-}
+};
 
 // Sprites
 // Axe Button
@@ -97,14 +97,19 @@ function addLumber() {
   switch (sound) {
     case 1:
       axeSwing1.play();
+      break;
     case 2:
       axeSwing2.play();
+      break;
     case 3:
       axeSwing3.play();
+      break;
     case 4:
       axeSwing4.play();
+      break;
     case 5:
       axeSwing5.play();
+      break;
   }
 }
 
@@ -115,7 +120,7 @@ backgroundStart.src = "./Sprites/startMenu.png";
 backgroundStart.onload = function () {
   c.drawImage(backgroundStart, 0, 0);
   addPlayButton();
-}
+};
 
 // Store Boxes
 function StoreBox(place, bought, cost, x, y, width, height) {
@@ -146,11 +151,11 @@ function StoreBox(place, bought, cost, x, y, width, height) {
     } else {
       this.sold();
     }
-  }
+  };
   this.sold = function() {
     c.beginPath();
     c.drawImage(this.picture, this.x, this.y);
-  }
+  };
 }
 
 let firstBox = new StoreBox("first",false, 250, 103, 120, 108, 100);
@@ -181,9 +186,9 @@ store.openText = function() {
   c.fillText("None", 325, 410);
   // Desc.
   c.font = "20px Arial";
-  c.fillText("Hover your mouse on these items to buy them!", 55, 450)
+  c.fillText("Hover your mouse on these items to buy them!", 55, 450);
   canvas.removeEventListener("mousedown", addLumber);
-}
+};
 store.open = function() {
   if ((mouse.x > store.X && mouse.x < store.X + 50) 
   && (mouse.y > 60 && mouse.y < 160)) {
@@ -192,7 +197,7 @@ store.open = function() {
     }
     store.activated = true;
   }
-}
+};
 store.close = function() {
   if (mouse.x > 0 && mouse.x < 60 && mouse.y > 60 && mouse.y < 160) {
     while (store.X < 450) {
@@ -201,7 +206,7 @@ store.close = function() {
     canvas.addEventListener("mousedown", addLumber);
     store.activated = false;
   }
-}
+};
 
 function addStore() {
   c.globalAlpha = 1;
@@ -223,14 +228,14 @@ function component(width, height, src, x, y) {
   this.update = function() {
     c.drawImage(this.image, this.x, this.y, this.width, this.height);
     c.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
-  }
+  };
   this.newPos = function() {
     this.x += this.speedX;
     this.y += this.speedY;
     if (this.x == -(this.width)) {
       this.x = 0;
     }
-  }    
+  }; 
 }
 
 let forestBackground = new component(1000, 500, "./Sprites/forest.png", 0, 0);
@@ -290,7 +295,7 @@ lumberBackground.update = function() {
   } else {
     lumberNumber = lumberValue;
   }
-}
+};
 
 function lumberCount() {
   c.beginPath();
@@ -317,10 +322,10 @@ function showLumberValue() {
 
 let secondAdd = function() {
   setTimeout(function() {lumberValue += 0.05}, 1000);
-}
+};
 let thirdAdd = function() {
-  setTimeout(function() {lumberValue += 0.1}, 1000)
-}
+  setTimeout(function() {lumberValue += 0.1}, 1000);
+};
 
 // Update function
 function startGame() {
@@ -348,6 +353,6 @@ function startGame() {
     thirdAdd(); 
   }
   if (lumberValue >= 1000000) {
-    alert("Congratulations! You finished the game! Refresh the website to play again.")
+    alert("Congratulations! You finished the game! Refresh the website to play again.");
   }
 }
